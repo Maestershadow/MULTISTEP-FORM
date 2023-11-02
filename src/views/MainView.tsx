@@ -78,8 +78,11 @@ export default function MainView() {
                             )}
                         </div>
                     </div>
+                    <div className='form-buttons'>
+                        <button onClick={() => setCurrentPage(currentPage + 1)} >Go Back</button>
+                        <button onClick={() => setCurrentPage(currentPage + 1)} >Next Step</button>
+                    </div>
 
-                    <button onClick={() => setCurrentPage(currentPage + 1)} className='form-button'>Next Step</button>
                 </div>
             </div>
         </main>
