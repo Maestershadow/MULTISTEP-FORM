@@ -52,7 +52,7 @@ img, picture
 body {
   margin: 0;
   font-family: var(--ff-def);
-  font-size: var(--fs-150);
+  font-size: var(--fs-100);
   font-weight: var(--fw-400);
   min-height: 100vh;
   background-color: var(--clr-light-blue);
@@ -63,6 +63,7 @@ body {
 h1
 {
   color: var(--clr-marine-blue);
+  font-size: var(--fs-450);
 }
 
 h2
@@ -106,4 +107,12 @@ input:focus-visible, input:focus, input:focus-within
 input:required
 {
   border: 1px solid var(--clr-strawberry-red);
+}
+
+@media (max-width: 51rem)
+{
+  body
+  {
+    display: block;
+  }
 }

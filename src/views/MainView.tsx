@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import './MainView.css'
 
 export default function MainView() {
+    const [currentPage, setCurrentPage] = useState(1);
+
     const pageData = [
         {
             "field": "Name",
@@ -49,7 +52,7 @@ export default function MainView() {
             <div className="form-card">
                 <div className="steps">
                     {stepsData.map((data) => <div>
-                        <div>
+                        <div data-selected={`${currentPage}` === data.number}>
                             <p>{data.number}</p>
                         </div>
                         <div>
@@ -60,21 +63,24 @@ export default function MainView() {
                     </div>)}
                 </div>
 
-                <form action="post" className="form">
-                    <div className='form-heading'>
-                        <h1>Personal info</h1>
-                        <h2>Please provide your name, email address, and phone number</h2>
+                <div className="form">
+                    <div className='form-main-content'>
+                        <div className='form-heading'>
+                            <h1>Personal info</h1>
+                            <h2>Please provide your name, email address, and phone number</h2>
+                        </div>
+                        <div className='input-fields'>
+                            {pageData.map((data) =>
+                                <div>
+                                    <label htmlFor="name">{data.field}</label>
+                                    <input type={data.type} name="name" id="name" placeholder={data.hint} />
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <div className='input-fields'>
-                        {pageData.map((data) =>
-                            <div>
-                                <label htmlFor="name">{data.field}</label>
-                                <input type={data.type} name="name" id="name" placeholder={data.hint} />
-                            </div>
-                        )}
-                    </div>
-                    <button className='form-button'>Next Step</button>
-                </form>
+
+                    <button onClick={() => setCurrentPage(currentPage + 1)} className='form-button'>Next Step</button>
+                </div>
             </div>
         </main>
     );

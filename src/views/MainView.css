@@ -1,53 +1,54 @@
-main
-{    background-color: var(--clr-white);
+main {
+    background-color: var(--clr-white);
     border-radius: 1rem;
     padding: 0.5rem;
 }
 
-.form-card
-{
+.form-card {
     display: flex;
-    gap: clamp(2rem, 4.5vw, 5rem)  ;
+    gap: clamp(2rem, 4.5vw, 5rem);
 }
 
-.form
-{
+.form {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4.5rem;
+    padding-top: 1.5rem;
+    padding-right: clamp(1rem, 4vw, 4rem);
 }
 
-.input-fields
-{
+.form-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-fields {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
 }
 
-.input-fields > div
-{
+.input-fields>div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    
+
 }
 
-.form-heading
-{
+.form-heading {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
 }
 
-.input-fields  label
-{
+.input-fields label {
     font-size: var(--fs-100);
     color: var(--clr-marine-blue);
 }
 
 
-.form-button
-{
+.form-button {
     color: var(--clr-white);
     background-color: var(--clr-marine-blue);
     border-radius: 0.4rem;
@@ -58,8 +59,7 @@ main
 }
 
 
-.steps
-{
+.steps {
     background: url('../assets/images/bg-sidebar-desktop.svg');
     border-radius: 0.7rem;
     background-position: bottom;
@@ -71,17 +71,15 @@ main
     gap: 1rem;
 }
 
-.steps > div
-{
+.steps>div {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
-.steps > div > div:first-child
-{
+.steps>div>div:first-child {
     background-color: transparent;
-    border:1px solid var(--clr-white);
+    border: 1px solid var(--clr-white);
     width: 2rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -89,21 +87,79 @@ main
     align-items: center;
     justify-content: center;
     color: var(--clr-white);
+    font-weight: var(--fw-700);
 }
 
-.steps > div > div:last-child
-{
+.steps>div>div:first-child[data-selected="true"] {
+    background-color: var(--clr-light-blue);
+    border: 1px solid transparent;
+    color: var(--clr-marine-blue);
+}
+
+.steps>div>div:last-child {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
 }
 
-.steps h2
-{
+.steps h2 {
     font-size: var(--fs-100);
 }
-.steps h3
-{
+
+.steps h3 {
     font-size: var(--fs-150);
     color: var(--clr-magnolia);
+}
+
+
+@media (max-width: 51rem) {
+    main {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        height: 100vh;
+    }
+
+
+    .steps {
+        flex-direction: row;
+        height: 12rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .steps>div>div:last-child {
+        display: none;
+    }
+
+  
+    .form-main-content {
+        background-color: var(--clr-white);
+        padding: 1.3rem;
+        border-radius: 0.8rem;
+        margin: 1rem;
+    }
+
+    .form-card {
+        display: grid;
+        grid-template-rows: 12rem auto;
+        gap: 0;
+        height: 100vh;
+
+    }
+
+    .form {
+        padding: 0;
+        gap: 0;
+        justify-content: space-between;
+
+    }
+
+    .steps {
+        background: url('../assets/images/bg-sidebar-mobile.svg');
+        padding: 0;
+        border-radius: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
