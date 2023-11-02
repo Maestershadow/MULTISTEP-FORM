@@ -1,26 +1,11 @@
+import Step1 from './Step1';
+
 import { useState } from 'react';
 import './MainView.css'
+import Step2 from './Step2';
 
 export default function MainView() {
     const [currentPage, setCurrentPage] = useState(1);
-
-    const pageData = [
-        {
-            "field": "Name",
-            "type": "text",
-            "hint": "e.g. Stephen King"
-        },
-        {
-            "field": "Email Address",
-            "type": "email",
-            "hint": "e.g. stephenking@lorem.com"
-        },
-        {
-            "field": "Phone Number",
-            "type": "tel",
-            "hint": "e.g. +1 234 567 890"
-        }
-    ]
 
     const stepsData = [
         {
@@ -64,20 +49,9 @@ export default function MainView() {
                 </div>
 
                 <div className="form">
-                    <div className='form-main-content'>
-                        <div className='form-heading'>
-                            <h1>Personal info</h1>
-                            <h2>Please provide your name, email address, and phone number</h2>
-                        </div>
-                        <div className='input-fields'>
-                            {pageData.map((data) =>
-                                <div>
-                                    <label htmlFor="name">{data.field}</label>
-                                    <input type={data.type} name="name" id="name" placeholder={data.hint} />
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                   {
+                    currentPage === 1 ? <Step1 />: <Step2 />
+                   } 
                     <div className='form-buttons'>
                         <button onClick={() => setCurrentPage(currentPage + 1)} >Go Back</button>
                         <button onClick={() => setCurrentPage(currentPage + 1)} >Next Step</button>

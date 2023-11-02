@@ -12,8 +12,9 @@ main {
 .form {
     display: flex;
     flex-direction: column;
-    gap: 4.5rem;
+    justify-content: space-between;
     padding-top: 1.5rem;
+    height: 28rem;
     padding-right: clamp(1rem, 4vw, 4rem);
 }
 
@@ -149,8 +150,7 @@ main {
         display: none;
     }
 
-    .steps > div
-    {
+    .steps>div {
         align-items: start;
         padding-top: 2rem;
     }
@@ -170,14 +170,12 @@ main {
         grid-template-rows: 12rem auto;
         gap: 0;
         height: 100vh;
-        
+
     }
 
     .form {
         padding: 0;
         gap: 0;
-        justify-content: space-between;
-
     }
 
     .steps {
