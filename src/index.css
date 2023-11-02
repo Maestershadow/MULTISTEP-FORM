@@ -1,0 +1,109 @@
+:root {
+  /* Colors */
+  --clr-marine-blue: hsl(213, 96%, 18%) ;
+  --clr-purplish-blue: hsl(243, 100%, 62%);
+  --clr-pastel-blue: hsl(228, 100%, 84%);
+  --clr-light-blue:hsl(206, 94%, 87%) ;
+  --clr-strawberry-red: hsl(354, 84%, 57%);
+
+  --clr-cool-gray: hsl(231, 11%, 63%);
+  --clr-light-gray: hsl(229, 24%, 87%);
+  --clr-magnolia: hsl(217, 100%, 97%);
+  --clr-alabaster: hsl(231, 100%, 99%);
+  --clr-white: hsl(0, 0%, 100%) ;
+
+  /* Font sizes */
+  --fs-100: 0.8rem;
+  --fs-150: 0.975rem;
+  --fs-200: 1.2rem;
+  --fs-250: 1.3rem;
+  --fs-300: 1.4rem;
+  --fs-350: 1.5rem;
+  --fs-400: 1.6rem;
+  --fs-450: 1.7rem;
+  --fs-500: 1.8rem;
+  --fs-600: 1.9rem;
+  --fs-700: 2.0rem;
+
+  /* Font weight */
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-700: 700;
+
+
+
+  --ff-def:'Ubuntu', sans-serif;
+  
+}
+
+*, *::after , *::before
+{
+  margin: 0;
+  padding: 0;
+}
+
+img, picture 
+{
+  width: 100%;
+  display: block;
+}
+
+
+body {
+  margin: 0;
+  font-family: var(--ff-def);
+  font-size: var(--fs-150);
+  font-weight: var(--fw-400);
+  min-height: 100vh;
+  background-color: var(--clr-light-blue);
+  display: grid;
+  place-content: center;
+}
+
+h1
+{
+  color: var(--clr-marine-blue);
+}
+
+h2
+{
+  color: var(--clr-cool-gray);
+  font-size: var(--fs-150);
+  font-weight: var(--fw-400);
+}
+
+input::placeholder
+{
+  color: var(--clr-cool-gray);
+}
+
+button
+{
+  outline: none;
+  border: none;
+  background: none;
+  fill: none;
+  cursor: pointer;
+}
+
+input
+{
+  border: 1px solid var(--clr-light-gray);
+  border-radius: 0.4rem;
+  height: 2.4rem;
+  padding-inline: 1rem;
+  color: var(--clr-marine-blue) ;
+  font-weight: var(--fw-700);
+  outline: none;
+}
+
+input:focus-visible, input:focus, input:focus-within
+{
+  border: 1px solid var(--clr-purplish-blue);
+  outline: none;
+}
+
+input:required
+{
+  border: 1px solid var(--clr-strawberry-red);
+}

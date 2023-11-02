@@ -1,0 +1,109 @@
+main
+{    background-color: var(--clr-white);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.form-card
+{
+    display: flex;
+    gap: clamp(2rem, 4.5vw, 5rem)  ;
+}
+
+.form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.input-fields
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.input-fields > div
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+}
+
+.form-heading
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.input-fields  label
+{
+    font-size: var(--fs-100);
+    color: var(--clr-marine-blue);
+}
+
+
+.form-button
+{
+    color: var(--clr-white);
+    background-color: var(--clr-marine-blue);
+    border-radius: 0.4rem;
+    padding-block: 0.8rem;
+    padding-inline: 1.1rem;
+    align-self: end;
+    font-weight: var(--fw-500);
+}
+
+
+.steps
+{
+    background: url('../assets/images/bg-sidebar-desktop.svg');
+    border-radius: 0.7rem;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem 4rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.steps > div
+{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.steps > div > div:first-child
+{
+    background-color: transparent;
+    border:1px solid var(--clr-white);
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-white);
+}
+
+.steps > div > div:last-child
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.steps h2
+{
+    font-size: var(--fs-100);
+}
+.steps h3
+{
+    font-size: var(--fs-150);
+    color: var(--clr-magnolia);
+}
