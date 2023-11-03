@@ -75,7 +75,7 @@ export default function MainView() {
                     <Step stepIndex={currentPage} />
                     <div className='form-buttons'>
                         <button data-visible={currentPage !== 1 ? "true":"false"} onClick={() => setCurrentPage(currentPage - 1)} >Go Back</button>
-                        <button data-visible={currentPage !== 5 ? "true": "false"} onClick={() => setCurrentPage(currentPage + 1)} >Next Step</button>
+                        <button style={{backgroundColor: currentPage === 4?"var(--clr-purplish-blue)":""}} data-visible={currentPage !== 5 ? "true": "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm": "Next Step"}</button>
                     </div>
 
                 </div>

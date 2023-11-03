@@ -48,14 +48,3 @@
 .addons input[type="checkbox"] {
    accent-color: var(--clr-purplish-blue);
 }
-/* 
-.addons input[type="checkbox"]:checked
-{
-    background: var(--clr-purplish-blue) ;
-}
-
-
-.addons input[type="checkbox"]:hover
-{
-    border-color: var(--clr-purplish-blue);
-} */

@@ -78,7 +78,7 @@ main {
     background-color: var(--clr-marine-blue);
     border-radius: 0.4rem;
     padding-block: 0.8rem;
-    padding-inline: 1.1rem;
+    width: 6rem;
     align-self: end;
     font-weight: var(--fw-500);
 }
