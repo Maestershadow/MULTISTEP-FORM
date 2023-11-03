@@ -8,23 +8,28 @@ import Step4 from './step4/Step4';
 
 interface StepProps {
     stepIndex: number;
-  }
+}
 
-function Step({stepIndex}:StepProps)
-{
+function Step({ stepIndex }: StepProps) {
     switch (stepIndex) {
         case 1:
-            return <Step1 /> 
+            return <Step1 />
         case 2:
-            return <Step2 /> 
+            return <Step2 />
         case 3:
-            return <Step3 /> 
+            return <Step3 />
         case 4:
-            return <Step4 /> 
+            return <Step4 />
         default:
-            return <></>
-           
-    }    
+            return <div className='thanks'>
+                <img src="/images/icon-thank-you.svg" alt="thanks" />
+                <h2>Thank you!</h2>
+                <p>Thanks for confirming your subscription! We hope you have fun using our platform.
+                    If you ever beed support, please feel free to email us at support@loremgaming.com
+                </p>
+            </div>
+
+    }
 }
 
 export default function MainView() {
@@ -73,10 +78,14 @@ export default function MainView() {
 
                 <div className="form">
                     <Step stepIndex={currentPage} />
-                    <div className='form-buttons'>
-                        <button data-visible={currentPage !== 1 ? "true":"false"} onClick={() => setCurrentPage(currentPage - 1)} >Go Back</button>
-                        <button style={{backgroundColor: currentPage === 4?"var(--clr-purplish-blue)":""}} data-visible={currentPage !== 5 ? "true": "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm": "Next Step"}</button>
-                    </div>
+
+                    {
+                        currentPage !== 5 &&
+                        <div className='form-buttons'>
+                            <button data-visible={currentPage !== 1 ? "true" : "false"} onClick={() => setCurrentPage(currentPage - 1)} >Go Back</button>
+                            <button style={{ backgroundColor: currentPage === 4 ? "var(--clr-purplish-blue)" : "" }} data-visible={currentPage !== 5 ? "true" : "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm" : "Next Step"}</button>
+                        </div>
+                    }
 
                 </div>
             </div>

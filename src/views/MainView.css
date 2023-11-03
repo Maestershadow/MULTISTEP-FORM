@@ -136,6 +136,34 @@ main {
     color: var(--clr-magnolia);
 }
 
+.thanks
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    padding:2rem ;
+}
+
+.thanks h2
+{
+    font-size: var(--fs-350);
+    font-weight: var(--fw-700);
+    color: var(--clr-marine-blue);
+}
+
+.thanks p
+{
+    color: var(--clr-cool-gray);
+}
+
+.thanks img
+{
+    width: 4rem;
+}
 
 @media (max-width: 51rem) {
     main {
@@ -166,7 +194,7 @@ main {
     }
 
 
-    .form-main-content {
+    .form-main-content,.thanks {
         position: relative;
         top: -5.55rem;
         background-color: var(--clr-white);
@@ -175,6 +203,7 @@ main {
         margin: 1rem;
     }
 
+ 
     .form-card {
         display: grid;
         grid-template-rows: 12rem auto;
