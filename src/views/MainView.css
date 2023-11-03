@@ -15,7 +15,8 @@ main {
     justify-content: space-between;
     padding-top: 1.5rem;
     height: 28rem;
-    padding-right: clamp(1rem, 4vw, 4rem);
+    width: 28rem;
+    margin-right: clamp(1rem, 5vw, 2rem);
 }
 
 .form-main-content {
@@ -75,7 +76,7 @@ main {
 
 
 .steps {
-    background: url('../assets/images/bg-sidebar-desktop.svg');
+    background: url('/images/bg-sidebar-desktop.svg');
     border-radius: 0.7rem;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -176,10 +177,13 @@ main {
     .form {
         padding: 0;
         gap: 0;
+        height: auto;
+        width: auto;
+        margin: 0;
     }
 
     .steps {
-        background: url('../assets/images/bg-sidebar-mobile.svg');
+        background: url('/images/bg-sidebar-mobile.svg');
         padding: 0;
         border-radius: 0;
         background-repeat: no-repeat;

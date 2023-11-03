@@ -1,8 +1,31 @@
-import Step1 from './Step1';
+import Step1 from './step1/Step1';
 
 import { useState } from 'react';
 import './MainView.css'
-import Step2 from './Step2';
+import Step2 from './step2/Step2';
+import Step3 from './step3/Step3';
+import Step4 from './step4/Step4';
+
+interface StepProps {
+    stepIndex: number;
+  }
+
+function Step({stepIndex}:StepProps)
+{
+    switch (stepIndex) {
+        case 1:
+            return <Step1 /> 
+        case 2:
+            return <Step2 /> 
+        case 3:
+            return <Step3 /> 
+        case 4:
+            return <Step4 /> 
+        default:
+            return <></>
+           
+    }    
+}
 
 export default function MainView() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -49,9 +72,7 @@ export default function MainView() {
                 </div>
 
                 <div className="form">
-                   {
-                    currentPage === 1 ? <Step1 />: <Step2 />
-                   } 
+                    <Step stepIndex={currentPage} />
                     <div className='form-buttons'>
                         <button onClick={() => setCurrentPage(currentPage + 1)} >Go Back</button>
                         <button onClick={() => setCurrentPage(currentPage + 1)} >Next Step</button>
