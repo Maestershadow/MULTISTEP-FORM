@@ -61,7 +61,16 @@ main {
     padding-inline: 1.1rem;
     align-self: end;
     font-weight: var(--fw-500);
+}
+
+.form-buttons>button:first-child[data-visible="false"]
+{
     visibility: hidden;
+}
+
+.form-buttons>button:first-child[data-visible="true"] 
+{
+    visibility: visible;
 }
 
 .form-buttons>button:last-child {

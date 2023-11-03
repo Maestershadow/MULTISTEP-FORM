@@ -1,3 +1,5 @@
+import './Step3.css'
+
 export default function Step3() {
     const addOnData = [
         {
@@ -14,7 +16,7 @@ export default function Step3() {
         },
         {
             "head": "Customizable profile",
-            "tail": "Custome theme on your profile",
+            "tail": "Custom theme on your profile",
             "charge": "+$2/mo",
             "charge-year": "",
         },
@@ -27,13 +29,19 @@ export default function Step3() {
                 <h2>Add-ons help enhance your gaming experience.</h2>
             </div>
 
-            <div>
+            <div className="addons">
                 {
                     addOnData.map((data) => <div>
                         <input type="checkbox" />
-                        <h3>{data.head}</h3>
-                        <p>{data.tail}</p>
-                        <p>{data.charge}</p>
+                        <div>
+                            <div>
+                                <h3>{data.head}</h3>
+                                <p>{data.tail}</p>
+                            </div>
+
+                            <p>{data.charge}</p>
+                        </div>
+
                     </div>)
                 }
             </div>

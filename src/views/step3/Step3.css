@@ -1,0 +1,61 @@
+.addons
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.addons > div
+{
+    border-radius: 0.4rem;
+    border: 1px solid var(--clr-light-gray);
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.addons > div > div
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.addons > div > div > div
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.addons > div > div > div p
+{
+    color: var(--clr-cool-gray);
+}
+
+.addons h3
+{
+    color: var(--clr-marine-blue);
+}
+
+.addons > div > div > p
+{
+    color: var(--clr-purplish-blue);
+}
+
+
+.addons input[type="checkbox"] {
+   accent-color: var(--clr-purplish-blue);
+}
+/* 
+.addons input[type="checkbox"]:checked
+{
+    background: var(--clr-purplish-blue) ;
+}
+
+
+.addons input[type="checkbox"]:hover
+{
+    border-color: var(--clr-purplish-blue);
+} */
