@@ -63,6 +63,11 @@ main {
     font-weight: var(--fw-500);
 }
 
+.form-buttons>button:first-child:hover
+{
+    color: var(--clr-marine-blue);
+}
+
 .form-buttons>button:first-child[data-visible="false"] {
     visibility: hidden;
 }

@@ -4,10 +4,8 @@
     gap: 1rem;
 }
 
-@media (max-height: 667px)
-{
-    .plans
-    {
+@media (max-height: 667px) {
+    .plans {
         gap: 0.6rem;
     }
 }
@@ -15,11 +13,22 @@
 
 .plans>div {
     padding: 1rem;
-    border: 1.5px solid var(--clr-purplish-blue);
+    border: 0.11rem solid var(--clr-light-gray);
     display: flex;
     flex-direction: column;
     gap: 2rem;
     border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.plans > div:hover
+{
+    border: 0.11rem solid var(--clr-purplish-blue);
+}
+
+.plans > div[data-selected="true"]
+{
+    border: 0.11rem solid var(--clr-purplish-blue);
 }
 
 .plans>div>div {
@@ -54,6 +63,20 @@
     color: var(--clr-cool-gray);
 }
 
+.mon-yrl p
+{
+    transition: all 220ms ease-in-out;
+}
+
+.mon-yrl > p:first-child[data-selected="false"]
+{
+   color: var(--clr-marine-blue);
+}
+
+.mon-yrl > p:last-child[data-selected="true"]
+{
+    color: var(--clr-marine-blue);
+}
 
 input[type="checkbox"].toggle {
     opacity: 0;
@@ -107,21 +130,17 @@ input[type="checkbox"].toggle:checked+label::after {
     transform: translateX(1.05rem);
 }
 
-@media (max-width: 51rem)
-{
-    .plans
-    {
+@media (max-width: 51rem) {
+    .plans {
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr;
     }
 
-    .plans > div
-    {
+    .plans>div {
         flex-direction: row;
     }
 
-    .plans img
-    {
+    .plans img {
         width: 2.5rem
     }
 }
