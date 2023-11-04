@@ -63,13 +63,11 @@ main {
     font-weight: var(--fw-500);
 }
 
-.form-buttons>button:first-child[data-visible="false"]
-{
+.form-buttons>button:first-child[data-visible="false"] {
     visibility: hidden;
 }
 
-.form-buttons>button:first-child[data-visible="true"] 
-{
+.form-buttons>button:first-child[data-visible="true"] {
     visibility: visible;
 }
 
@@ -83,8 +81,7 @@ main {
     font-weight: var(--fw-500);
 }
 
-.form-buttons>button:last-child:hover
-{
+.form-buttons>button:last-child:hover {
     opacity: 0.8;
 }
 
@@ -141,8 +138,7 @@ main {
     color: var(--clr-magnolia);
 }
 
-.thanks
-{
+.thanks {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -150,25 +146,23 @@ main {
     justify-content: center;
     gap: 1rem;
     text-align: center;
-    padding:2rem ;
+    padding: 2rem;
 }
 
-.thanks h2
-{
+.thanks h2 {
     font-size: var(--fs-350);
     font-weight: var(--fw-700);
     color: var(--clr-marine-blue);
 }
 
-.thanks p
-{
+.thanks p {
     color: var(--clr-cool-gray);
 }
 
-.thanks img
-{
+.thanks img {
     width: 4rem;
 }
+
 
 @media (max-width: 51rem) {
     main {
@@ -199,7 +193,10 @@ main {
     }
 
 
-    .form-main-content,.thanks {
+    .form-main-content,
+    .thanks {
+        height: fit-content;
+        width: min(30rem,100%);
         position: relative;
         top: -5.55rem;
         background-color: var(--clr-white);
@@ -208,7 +205,14 @@ main {
         margin: 1rem;
     }
 
- 
+    .form-hover {
+        display: flex;
+        place-content: center;
+        height: 1rem;
+    }
+
+
+
     .form-card {
         display: grid;
         grid-template-rows: 12rem auto;

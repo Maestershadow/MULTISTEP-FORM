@@ -77,7 +77,10 @@ export default function MainView() {
                 </div>
 
                 <div className="form">
-                    <Step stepIndex={currentPage} />
+                    <div className='form-hover'>
+
+                        <Step stepIndex={currentPage} />
+                    </div>
 
                     {
                         currentPage !== 5 &&
