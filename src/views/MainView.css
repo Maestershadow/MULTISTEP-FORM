@@ -196,7 +196,7 @@ main {
     .form-main-content,
     .thanks {
         height: fit-content;
-        width: min(30rem,100%);
+        width: min(30rem, 100%);
         position: relative;
         top: -5.55rem;
         background-color: var(--clr-white);
@@ -235,5 +235,27 @@ main {
         border-radius: 0;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+
+    @media (max-height: 667px) {
+        .form-main-content {
+            top: -9.5rem;
+        }
+
+        .form-card {
+            overflow-y: hidden;
+        }
+
+
+        .steps>div {
+            align-items: start;
+            padding-top: 0.5rem;
+        }
+
+        .steps {
+            height: 10rem;
+        }
+
     }
 }

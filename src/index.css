@@ -134,8 +134,19 @@ input:required
 
 @media (max-width: 51rem)
 {
+  
   body
   {
     display: block;
+  }
+}
+
+
+@media (max-width: 40rem)
+{
+  :root
+  {
+    --fs-350: 1.4rem;
+    --fs-150: 0.9rem;
   }
 }
