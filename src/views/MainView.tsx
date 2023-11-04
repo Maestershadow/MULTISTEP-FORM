@@ -8,12 +8,13 @@ import Step4 from './step4/Step4';
 
 interface StepProps {
     stepIndex: number;
+    callbackFunc: () => void; 
 }
 
-function Step({ stepIndex }: StepProps) {
+function Step({ stepIndex, callbackFunc }: StepProps) {
     switch (stepIndex) {
         case 1:
-            return <Step1 />
+            return <Step1 callback={callbackFunc}  />
         case 2:
             return <Step2 />
         case 3:
@@ -28,7 +29,6 @@ function Step({ stepIndex }: StepProps) {
                     If you ever beed support, please feel free to email us at support@loremgaming.com
                 </p>
             </div>
-
     }
 }
 
@@ -79,14 +79,14 @@ export default function MainView() {
                 <div className="form">
                     <div className='form-hover'>
 
-                        <Step stepIndex={currentPage} />
+                        <Step callbackFunc={() => setCurrentPage(currentPage + 1)} stepIndex={currentPage} />
                     </div>
 
                     {
                         currentPage !== 5 &&
                         <div className='form-buttons'>
                             <button data-visible={currentPage !== 1 ? "true" : "false"} onClick={() => setCurrentPage(currentPage - 1)} >Go Back</button>
-                            <button style={{ backgroundColor: currentPage === 4 ? "var(--clr-purplish-blue)" : "" }} data-visible={currentPage !== 5 ? "true" : "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm" : "Next Step"}</button>
+                          {currentPage === 1 ?  <button form='personInfo' type='submit'>Next Step</button>:<button style={{ backgroundColor: currentPage === 4 ? "var(--clr-purplish-blue)" : "" }} data-visible={currentPage !== 5 ? "true" : "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm" : "Next Step"}</button> } 
                         </div>
                     }
 

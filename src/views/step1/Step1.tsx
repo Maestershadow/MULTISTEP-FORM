@@ -1,28 +1,99 @@
+import { useState } from "react";
 
+import './Step1.css'
 
-export default function Step1() {
+interface FormErrors
+{
+    username: string;
+    email: string;
+    phone: string;
+}
+
+export default function Step1(props: { callback: () => void; }) {
 
     const pageData = [
         {
             "field": "Name",
             "type": "text",
-            "hint": "e.g. Stephen King"
+            "hint": "e.g. Stephen King",
+            "sub": "username"
         },
         {
             "field": "Email Address",
-            "type": "email",
-            "hint": "e.g. stephenking@lorem.com"
+            "type": "text",
+            "hint": "e.g. stephenking@lorem.com",
+            "sub": "email"
         },
         {
             "field": "Phone Number",
             "type": "tel",
-            "hint": "e.g. +1 234 567 890"
+            "hint": "e.g. +1 234 567 890",
+            "sub": "phone"
         }
     ]
 
 
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        phone: ""
+    });
+
+    const [errors, setErrors] = useState<FormErrors>({
+        username: "",
+        email: "",
+        phone: ""
+    });
+
+    const handleChange = (e: { target: { name: string; value: string; }; }) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        })
+    }
+
+    const validateForm = () => {
+        const { username, email, phone } = formData;
+        const newErrors = {
+          username: '',
+          email: '',
+          phone: ''
+        };
+
+        if (username.trim().length === 0) {
+            newErrors.username = 'This field is required';
+        }
+
+       
+
+        if (email.trim().length === 0) {
+            newErrors.email = 'This field is required';
+        }
+        else if(!/\S+@\S+\S+/.test(email))
+        {
+            newErrors.email = 'Invalid email format'
+        }
+        //Do an else if here to test for email format.   
+
+        if (phone.trim().length === 0) {
+            newErrors.phone = "This field is required";
+        }
+      
+
+        setErrors(newErrors);
+        return Object.values(newErrors).every((error) => !error);
+    }
+
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        if (validateForm()) {
+            props.callback();
+        }
+    }
+
     return (
-        <div className='form-main-content'>
+        <form id="personInfo" onSubmit={handleSubmit} className='form-main-content'>
             <div className='form-heading'>
                 <h1>Personal info</h1>
                 <h2>Please provide your name, email address, and phone number</h2>
@@ -30,11 +101,14 @@ export default function Step1() {
             <div className='input-fields'>
                 {pageData.map((data) =>
                     <div>
-                        <label htmlFor="name">{data.field}</label>
-                        <input type={data.type} name="name" id="name" placeholder={data.hint} />
+                        <div className="error-fields">
+                            <label htmlFor={data.sub}>{data.field}</label>
+                            <p>{errors[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"]}</p>
+                        </div>
+                        <input onChange={handleChange} value={formData[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"]} type={data.type} name={data.sub} id={data.sub} placeholder={data.hint} />
                     </div>
                 )}
             </div>
-        </div>
+        </form>
     );
 }

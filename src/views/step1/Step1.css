@@ -1,0 +1,12 @@
+.error-fields
+{
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.error-fields p
+{
+    color: var(--clr-strawberry-red);
+    font-weight: var(--fw-500);
+}
