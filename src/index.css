@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face
+{
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Bold.ttf');
+  font-weight: 700;
+}
+
 :root {
   /* Colors */
   --clr-marine-blue: hsl(213, 96%, 18%) ;
@@ -14,7 +33,7 @@
 
   /* Font sizes */
   --fs-100: 0.8rem;
-  --fs-150: 0.975rem;
+  --fs-150: 0.96rem;
   --fs-200: 1.2rem;
   --fs-250: 1.3rem;
   --fs-300: 1.4rem;
@@ -63,7 +82,7 @@ body {
 h1
 {
   color: var(--clr-marine-blue);
-  font-size: var(--fs-450);
+  font-size: var(--fs-350);
 }
 
 h2
@@ -80,6 +99,7 @@ input::placeholder
 
 button
 {
+  font-family: inherit;
   outline: none;
   border: none;
   background: none;
@@ -94,8 +114,9 @@ input
   height: 2.4rem;
   padding-inline: 1rem;
   color: var(--clr-marine-blue) ;
-  font-weight: var(--fw-700);
+  font-weight: var(--fw-500);
   outline: none;
+  font-family: var(--ff-def);
 }
 
 input:focus-visible, input:focus, input:focus-within
@@ -108,6 +129,8 @@ input:required
 {
   border: 1px solid var(--clr-strawberry-red);
 }
+
+
 
 @media (max-width: 51rem)
 {

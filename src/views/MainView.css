@@ -83,6 +83,11 @@ main {
     font-weight: var(--fw-500);
 }
 
+.form-buttons>button:last-child:hover
+{
+    opacity: 0.8;
+}
+
 
 .steps {
     background: url('/images/bg-sidebar-desktop.svg');
@@ -93,7 +98,7 @@ main {
     padding: 2rem 4rem 2rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .steps>div {
