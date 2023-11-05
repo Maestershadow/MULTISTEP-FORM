@@ -6,21 +6,42 @@ import Step2 from './step2/Step2';
 import Step3 from './step3/Step3';
 import Step4 from './step4/Step4';
 
-interface StepProps {
-    stepIndex: number;
-    callbackFunc: () => void; 
+
+
+interface StepsInterface {
+    first: {
+        username: string,
+        email: string,
+        phone: string
+    },
+    second: {
+        index: number,
+        plan: string,
+        amount: string,
+        type: string
+    },
+    third: {
+        selectedIndexes: Array<number>
+    }
 }
 
-function Step({ stepIndex, callbackFunc }: StepProps) {
+interface StepProps {
+    stepIndex: number;
+    callbackFunc: () => void;
+    stepData: StepsInterface;
+    updateStepsFunc: (step: string, values: unknown) => void;
+}
+
+function Step({ stepIndex, callbackFunc, stepData, updateStepsFunc }: StepProps) {
     switch (stepIndex) {
         case 1:
-            return <Step1 callback={callbackFunc}  />
+            return <Step1 stepDataValue={stepData} update={updateStepsFunc} callback={callbackFunc} />
         case 2:
-            return <Step2 />
+            return <Step2 callback={callbackFunc} stepDataValue={stepData} update={updateStepsFunc} />
         case 3:
-            return <Step3 />
+            return <Step3 update={updateStepsFunc} callback={callbackFunc} stepDataValue={stepData} />
         case 4:
-            return <Step4 />
+            return <Step4 stepDataValue={stepData} />
         default:
             return <div className='thanks'>
                 <img src="/images/icon-thank-you.svg" alt="thanks" />
@@ -32,8 +53,50 @@ function Step({ stepIndex, callbackFunc }: StepProps) {
     }
 }
 
+
+
 export default function MainView() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [allStepsData, setAllStepsData] = useState<StepsInterface>(
+        {
+            "first": {
+                "username": "",
+                "email": "",
+                "phone": "",
+            },
+            "second": {
+                "index": 0,
+                "plan": "",
+                "amount": "",
+                "type": ""
+            },
+            "third": {
+                "selectedIndexes": []
+            }
+        }
+    );
+
+    function updateSteps(step: string, values: unknown) {
+        const stepData: StepsInterface = {
+            "first": {
+                "username": allStepsData.first.username,
+                "email": allStepsData.first.email,
+                "phone": allStepsData.first.phone,
+            },
+            "second": {
+                "index": allStepsData.second.index,
+                "plan": allStepsData.second.plan,
+                "amount": allStepsData.second.amount,
+                "type": allStepsData.second.type
+            },
+            "third":
+            {
+                "selectedIndexes": allStepsData.third.selectedIndexes
+            }
+        };
+        stepData[step] = values;
+        setAllStepsData(stepData);
+    }
 
     const stepsData = [
         {
@@ -80,14 +143,19 @@ export default function MainView() {
                 <div className="form">
                     <div className='form-hover'>
 
-                        <Step callbackFunc={() => setCurrentPage(currentPage + 1)} stepIndex={currentPage} />
+                        <Step
+                            callbackFunc={() => setCurrentPage(currentPage + 1)}
+                            stepIndex={currentPage}
+                            stepData={allStepsData}
+                            updateStepsFunc={(step, values) => updateSteps(step, values)}
+                        />
                     </div>
 
                     {
                         currentPage !== 5 &&
                         <div className='form-buttons'>
                             <button data-visible={currentPage !== 1 ? "true" : "false"} onClick={() => setCurrentPage(currentPage - 1)} >Go Back</button>
-                          {currentPage === 1 ?  <button form='personInfo' type='submit'>Next Step</button>:<button style={{ backgroundColor: currentPage === 4 ? "var(--clr-purplish-blue)" : "" }} data-visible={currentPage !== 5 ? "true" : "false"} onClick={() => setCurrentPage(currentPage + 1)} >{currentPage === 4 ? "Confirm" : "Next Step"}</button> } 
+                            <button form={`step${currentPage}`} type='submit' style={{ backgroundColor: currentPage === 4 ? "var(--clr-purplish-blue)" : "" }} data-visible={currentPage !== 5 ? "true" : "false"}  >{currentPage === 4 ? "Confirm" : "Next Step"}</button>
                         </div>
                     }
 

@@ -1,7 +1,27 @@
 import { useState } from 'react';
 import './Step2.css'
 
-export default function Step2() {
+
+interface StepsInterface {
+    first: {
+        username: string,
+        email: string,
+        phone: string
+    },
+    second: {
+        index: number,
+        plan: string,
+        amount: string,
+        type: string
+    },
+    third:
+    {
+        selectedIndexes: Array<number>
+    }
+}
+
+
+export default function Step2(props: {callback:()=>void; stepDataValue: StepsInterface; update: (arg0: string, arg1: { index: number; plan: string; amount: string; type: string; }) => void; }) {
 
 
     const pageData = [
@@ -28,37 +48,52 @@ export default function Step2() {
         }
     ]
 
-    const [isChecked,setIsChecked] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [isChecked, setIsChecked] = useState(props.stepDataValue.second.type === "yearly");
+    const [selectedIndex, setSelectedIndex] = useState(props.stepDataValue.second.index);
 
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked)
     }
 
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+
+        const subData = {
+            "index": selectedIndex,
+            "plan": pageData[selectedIndex].name,
+            "amount": isChecked ? pageData[selectedIndex].yearly : pageData[selectedIndex].monthly,
+            "type": isChecked ? "yearly" : "monthly"
+        }
+
+        props.update("second", subData);
+        props.callback();
+
+    }
+
     return (
-        <div className='form-main-content'>
+        <form onSubmit={handleSubmit} id='step2' className='form-main-content'>
             <div className='form-heading'>
                 <h1>Select your plan</h1>
                 <h2>You have the option of monthly or yearly billing</h2>
             </div>
             <div className='plans'>
                 {pageData.map((data) =>
-                    <div onClick={()=>setSelectedIndex(data.index)} data-selected={data.index === selectedIndex}>
+                    <div onClick={() => setSelectedIndex(data.index)} data-selected={data.index === selectedIndex}>
                         <img src={data.icon} alt={data.name} />
                         <div>
                             <h3>{data.name}</h3>
-                            <p>{ isChecked ? data.yearly : data.monthly}</p>
-                            {isChecked && <p style={{color: "var(--clr-marine-blue)"}}>2 months free</p>}
+                            <p>{isChecked ? data.yearly : data.monthly}</p>
+                            {isChecked && <p style={{ color: "var(--clr-marine-blue)" }}>2 months free</p>}
                         </div>
                     </div>
                 )}
             </div>
             <div className="mon-yrl">
                 <p data-selected={isChecked}>Monthly</p>
-                <input onChange={handleCheckboxChange} type="checkbox" id="check" className="toggle" />
+                <input checked={isChecked} onChange={handleCheckboxChange} type="checkbox" id="check" className="toggle" />
                 <label htmlFor="check"></label>
                 <p data-selected={isChecked}>Yearly</p>
             </div>
-        </div>
+        </form>
     );
 }

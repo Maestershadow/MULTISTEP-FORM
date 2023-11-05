@@ -9,7 +9,26 @@ interface FormErrors
     phone: string;
 }
 
-export default function Step1(props: { callback: () => void; }) {
+interface StepsInterface
+{
+    first :{
+        username: string,
+        email: string,
+        phone: string
+    },
+    second: {
+        index: number,
+        plan: string,
+        amount: string,
+        type: string
+    },
+    third:
+    {
+        selectedIndexes: Array<number>
+    }
+}
+
+export default function Step1(props: { stepDataValue: StepsInterface,update: (arg0: string, arg1: { username: string; email: string; phone: string; }) => void;  callback: () => void; }) {
 
     const pageData = [
         {
@@ -34,9 +53,9 @@ export default function Step1(props: { callback: () => void; }) {
 
 
     const [formData, setFormData] = useState({
-        username: "",
-        email: "",
-        phone: ""
+        username: props.stepDataValue.first.username,
+        email: props.stepDataValue.first.email,
+        phone: props.stepDataValue.first.phone
     });
 
     const [errors, setErrors] = useState<FormErrors>({
@@ -88,12 +107,13 @@ export default function Step1(props: { callback: () => void; }) {
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (validateForm()) {
+            props.update("first",formData);
             props.callback();
         }
     }
 
     return (
-        <form id="personInfo" onSubmit={handleSubmit} className='form-main-content'>
+        <form id="step1" onSubmit={handleSubmit} className='form-main-content'>
             <div className='form-heading'>
                 <h1>Personal info</h1>
                 <h2>Please provide your name, email address, and phone number</h2>
