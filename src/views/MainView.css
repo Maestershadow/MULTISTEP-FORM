@@ -151,7 +151,8 @@ main {
     justify-content: center;
     gap: 1rem;
     text-align: center;
-    padding: 2rem;
+    padding: 2.2rem;
+    line-height: 1.5;
 }
 
 .thanks h2 {

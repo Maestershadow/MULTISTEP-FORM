@@ -10,3 +10,9 @@
     color: var(--clr-strawberry-red);
     font-weight: var(--fw-500);
 }
+
+
+.input-fields input[data-failed="true"]
+{
+    border: 1px solid var(--clr-strawberry-red);
+}

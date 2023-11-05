@@ -30,9 +30,10 @@ interface StepProps {
     callbackFunc: () => void;
     stepData: StepsInterface;
     updateStepsFunc: (step: string, values: unknown) => void;
+    change: () => void;
 }
 
-function Step({ stepIndex, callbackFunc, stepData, updateStepsFunc }: StepProps) {
+function Step({ stepIndex, callbackFunc, stepData, updateStepsFunc, change }: StepProps) {
     switch (stepIndex) {
         case 1:
             return <Step1 stepDataValue={stepData} update={updateStepsFunc} callback={callbackFunc} />
@@ -41,7 +42,7 @@ function Step({ stepIndex, callbackFunc, stepData, updateStepsFunc }: StepProps)
         case 3:
             return <Step3 update={updateStepsFunc} callback={callbackFunc} stepDataValue={stepData} />
         case 4:
-            return <Step4 stepDataValue={stepData} />
+            return <Step4 change={change} callback={callbackFunc} stepDataValue={stepData} />
         default:
             return <div className='thanks'>
                 <img src="/images/icon-thank-you.svg" alt="thanks" />
@@ -128,8 +129,9 @@ export default function MainView() {
         <main>
             <div className="form-card">
                 <div className="steps">
-                    {stepsData.map((data) => <div>
-                        <div data-selected={`${currentPage}` === data.number}>
+                    {stepsData.map((data) => 
+                     <div key={data.number}>
+                        <div data-selected={`${currentPage}` === data.number || (currentPage === 5 && data.number === "4") }>
                             <p>{data.number}</p>
                         </div>
                         <div>
@@ -144,6 +146,7 @@ export default function MainView() {
                     <div className='form-hover'>
 
                         <Step
+                            change={() => setCurrentPage(2)}
                             callbackFunc={() => setCurrentPage(currentPage + 1)}
                             stepIndex={currentPage}
                             stepData={allStepsData}

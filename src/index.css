@@ -125,10 +125,6 @@ input:focus-visible, input:focus, input:focus-within
   outline: none;
 }
 
-input:required
-{
-  border: 1px solid var(--clr-strawberry-red);
-}
 
 
 

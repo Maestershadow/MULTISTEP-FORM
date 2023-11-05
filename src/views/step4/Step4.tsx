@@ -18,7 +18,7 @@ interface StepsInterface {
     }
 }
 
-export default function Step4(props: { stepDataValue: StepsInterface; }) {
+export default function Step4(props: { stepDataValue: StepsInterface;  callback: () => void ; change: () =>void}) {
     const addOnData = [
         {
             "index": 0,
@@ -67,8 +67,14 @@ export default function Step4(props: { stepDataValue: StepsInterface; }) {
         return totalCharges
     }
 
+    const handleSubmit = (e: { preventDefault: () => void;  }) => {
+        e.preventDefault();
+        props.callback();
+    }
+
+
     return (
-        <form id='step4' className='form-main-content'>
+        <form onSubmit={handleSubmit} id='step4' className='form-main-content'>
             <div className='form-heading'>
                 <h1>Finishing up</h1>
                 <h2>Double-check everything looks OK before confirming.</h2>
@@ -77,12 +83,12 @@ export default function Step4(props: { stepDataValue: StepsInterface; }) {
             <div className="summary">
                 <div className="summary-values">
                     <div>
-                        <h2>{`${props.stepDataValue.second.plan}(${props.stepDataValue.second.type})`}<span>Change</span></h2>
+                        <h2>{`${props.stepDataValue.second.plan}(${props.stepDataValue.second.type})`}<span onClick={()=>props.change()}>Change</span></h2>
                         <p>{`${props.stepDataValue.second.amount}`}</p>
                     </div>
                     <div>
                         {props.stepDataValue.third.selectedIndexes.map((value) =>
-                            <p>{addOnData[value].head}<span>{props.stepDataValue.second.type === "monthly" ? addOnData[value].charge : addOnData[value]['charge-year']}</span></p>
+                            <p key={addOnData[value].head}>{addOnData[value].head}<span>{props.stepDataValue.second.type === "monthly" ? addOnData[value].charge : addOnData[value]['charge-year']}</span></p>
                         )}
                     </div>
                 </div>

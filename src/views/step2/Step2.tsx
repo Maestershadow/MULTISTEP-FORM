@@ -51,7 +51,7 @@ export default function Step2(props: {callback:()=>void; stepDataValue: StepsInt
     const [isChecked, setIsChecked] = useState(props.stepDataValue.second.type === "yearly");
     const [selectedIndex, setSelectedIndex] = useState(props.stepDataValue.second.index);
 
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
         setIsChecked(event.target.checked)
     }
 
@@ -78,7 +78,7 @@ export default function Step2(props: {callback:()=>void; stepDataValue: StepsInt
             </div>
             <div className='plans'>
                 {pageData.map((data) =>
-                    <div onClick={() => setSelectedIndex(data.index)} data-selected={data.index === selectedIndex}>
+                    <div key={data.name} onClick={() => setSelectedIndex(data.index)} data-selected={data.index === selectedIndex}>
                         <img src={data.icon} alt={data.name} />
                         <div>
                             <h3>{data.name}</h3>

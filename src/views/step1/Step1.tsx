@@ -2,16 +2,14 @@ import { useState } from "react";
 
 import './Step1.css'
 
-interface FormErrors
-{
+interface FormErrors {
     username: string;
     email: string;
     phone: string;
 }
 
-interface StepsInterface
-{
-    first :{
+interface StepsInterface {
+    first: {
         username: string,
         email: string,
         phone: string
@@ -28,7 +26,7 @@ interface StepsInterface
     }
 }
 
-export default function Step1(props: { stepDataValue: StepsInterface,update: (arg0: string, arg1: { username: string; email: string; phone: string; }) => void;  callback: () => void; }) {
+export default function Step1(props: { stepDataValue: StepsInterface, update: (arg0: string, arg1: { username: string; email: string; phone: string; }) => void; callback: () => void; }) {
 
     const pageData = [
         {
@@ -66,31 +64,41 @@ export default function Step1(props: { stepDataValue: StepsInterface,update: (ar
 
     const handleChange = (e: { target: { name: string; value: string; }; }) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        })
+        if (name === "phone") {
+            if (/^[0-9+ ]*$/.test(value)) {
+                setFormData({
+                    ...formData,
+                    [name]: value
+                })
+            }
+        }
+        else {
+            setFormData({
+                ...formData,
+                [name]: value
+            })
+        }
+
     }
 
     const validateForm = () => {
         const { username, email, phone } = formData;
         const newErrors = {
-          username: '',
-          email: '',
-          phone: ''
+            username: '',
+            email: '',
+            phone: ''
         };
 
         if (username.trim().length === 0) {
             newErrors.username = 'This field is required';
         }
 
-       
+
 
         if (email.trim().length === 0) {
             newErrors.email = 'This field is required';
         }
-        else if(!/\S+@\S+\S+/.test(email))
-        {
+        else if (!/\S+@\S+\S+/.test(email)) {
             newErrors.email = 'Invalid email format'
         }
         //Do an else if here to test for email format.   
@@ -98,7 +106,7 @@ export default function Step1(props: { stepDataValue: StepsInterface,update: (ar
         if (phone.trim().length === 0) {
             newErrors.phone = "This field is required";
         }
-      
+
 
         setErrors(newErrors);
         return Object.values(newErrors).every((error) => !error);
@@ -107,7 +115,7 @@ export default function Step1(props: { stepDataValue: StepsInterface,update: (ar
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (validateForm()) {
-            props.update("first",formData);
+            props.update("first", formData);
             props.callback();
         }
     }
@@ -120,12 +128,12 @@ export default function Step1(props: { stepDataValue: StepsInterface,update: (ar
             </div>
             <div className='input-fields'>
                 {pageData.map((data) =>
-                    <div>
+                    <div key={data.field}>
                         <div className="error-fields">
                             <label htmlFor={data.sub}>{data.field}</label>
                             <p>{errors[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"]}</p>
                         </div>
-                        <input onChange={handleChange} value={formData[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"]} type={data.type} name={data.sub} id={data.sub} placeholder={data.hint} />
+                        <input maxLength={data.sub === "phone"?15:45} data-failed={errors[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"].trim().length > 0} onChange={handleChange} value={formData[data.sub === "username" ? "username" : data.sub === "email" ? "email" : "phone"]} type={data.type} name={data.sub} id={data.sub} placeholder={data.hint} />
                     </div>
                 )}
             </div>

@@ -21,7 +21,14 @@
     color: var(--clr-cool-gray);
     font-weight: var(--fw-500);
     text-decoration: underline;
+    cursor: pointer;
 }
+
+.summary h2>span:hover
+{
+    color: var(--clr-marine-blue);
+}
+
 
 .summary h2 + p
 {

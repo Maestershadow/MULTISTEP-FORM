@@ -73,7 +73,8 @@ export default function Step3(props: { stepDataValue: StepsInterface; update: (a
 
             <div className="addons">
                 {
-                    addOnData.map((data) => <div data-selected={selectedIndexes.includes(data.index)}>
+                    addOnData.map((data) => 
+                    <div key={data.head} data-selected={selectedIndexes.includes(data.index)}>
                         <input onChange={() => handleCheckboxChange(data.index)} checked={selectedIndexes.includes(data.index)} type="checkbox" />
                         <div>
                             <div>
