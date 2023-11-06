@@ -54,6 +54,25 @@ function Step({ stepIndex, callbackFunc, stepData, updateStepsFunc, change }: St
     }
 }
 
+interface First {
+
+    "username": string,
+    "email": string,
+    "phone": string,
+
+}
+
+interface Second {
+    "index": number,
+    "plan": string,
+    "amount": string,
+    "type": string
+
+}
+
+interface Third {
+    "selectedIndexes": Array<number>
+}
 
 
 export default function MainView() {
@@ -95,7 +114,19 @@ export default function MainView() {
                 "selectedIndexes": allStepsData.third.selectedIndexes
             }
         };
-        stepData[step] = values;
+        if (step === "first") {
+            stepData.first = values as First;
+        }
+        else if(step === "second")
+        {
+            stepData.second = values as Second;
+        }
+        else if(step === "third")
+        {
+            stepData.third = values as Third
+        }
+
+
         setAllStepsData(stepData);
     }
 
@@ -129,17 +160,17 @@ export default function MainView() {
         <main>
             <div className="form-card">
                 <div className="steps">
-                    {stepsData.map((data) => 
-                     <div key={data.number}>
-                        <div data-selected={`${currentPage}` === data.number || (currentPage === 5 && data.number === "4") }>
-                            <p>{data.number}</p>
-                        </div>
-                        <div>
-                            <h2>{data.step}</h2>
-                            <h3>{data.name}</h3>
-                        </div>
+                    {stepsData.map((data) =>
+                        <div key={data.number}>
+                            <div data-selected={`${currentPage}` === data.number || (currentPage === 5 && data.number === "4")}>
+                                <p>{data.number}</p>
+                            </div>
+                            <div>
+                                <h2>{data.step}</h2>
+                                <h3>{data.name}</h3>
+                            </div>
 
-                    </div>)}
+                        </div>)}
                 </div>
 
                 <div className="form">
